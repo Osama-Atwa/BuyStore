@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row" >
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="ToggleSrc()" type="button" style="margin: 15px;"> Toggle </button>
+      <div class="container">
+        <img [src]="img" alt="my dog" style="margin: 15px;" width="300px" height="200px">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Av.Quantity</th>
+            <th>Price</th>
+            <th>Count</th>
+            <th>Buy</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let prod of products">
+            <td> {{ prod.product.id }} </td>
+            <td> {{ prod.product.Name }} </td>
+            <td> <img [src]="prod.product.img" style="margin: 10px;" width="175px" height="200px"> </td>
+            <td> {{ prod.product.qty }} </td>
+            <td> {{ prod.product.Price }} </td>
+            <td> <input type="number" [(ngModel)]="prod.count"> </td>
+            <td> <button class="btn btn-secondary" (click)="OnBuy(prod.product.id)"> Buy </button> </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Total Price : {{ total }} </p>
+    </div>
+  </div>
+</div>

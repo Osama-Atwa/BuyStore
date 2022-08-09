@@ -1,0 +1,9 @@
+<tr>
+  <td> {{ prod.id }} </td>
+  <td> {{ prod.Name }} </td>
+  <td> <img [src]="prod.img" style="margin: 10px;" width="175px" height="200px"> </td>
+  <td> {{ prod.qty }} </td>
+  <td> {{ prod.Price }} </td>
+  <td> <input type="number" [(ngModel)]="count"> </td>
+  <td> <button class="btn btn-secondary" (click)="OnBuy()"> Buy </button> </td>
+</tr>

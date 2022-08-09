@@ -1,0 +1,50 @@
+import { Component, OnInit } from '@angular/core';
+import {ProductModule} from '../../Models/product/product.module';
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+
+  img: string = '../../../assets/img1.jpg';
+  count: number = 0;
+  products = [
+    {product: new ProductModule(0,'S10','../../../assets/s10.jpg',10,10000,'mobile') , count: 0, sum: 0},
+    {product: new ProductModule(1,'S20','../../../assets/s20.jpg',20,20000,'mobile') , count: 0, sum: 0}
+  ];
+  total:number=0;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  ToggleSrc(){
+    if(this.img === '../../../assets/img1.jpg')
+    {
+      this.img = '../../../assets/img2.jpg';
+    }
+    else{
+      this.img = '../../../assets/img1.jpg';
+    }
+  }
+
+  AddToTotal(productPrice:number){
+    this.total += productPrice;
+  }
+
+  OnBuy(id:number){
+    if(this.products.find(x=>x.product.id==id))
+    {
+      var x = this.products.filter(x=>x.product.id==id);      ;
+      x[0].sum = x[0].count * x[0].product.Price;
+      this.calTotal();
+    }
+  }
+  calTotal(){
+    this.total=0;
+    for (let index = 0; index < this.products.length; index++) {
+      const element = this.products[index];
+      this.total += element.sum;
+    }
+  }
+}
