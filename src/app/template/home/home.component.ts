@@ -8,6 +8,8 @@ import {ProductModule} from '../../Models/product/product.module';
 export class HomeComponent implements OnInit {
 
   img: string = '../../../assets/img1.jpg';
+  selectedOption:string='';
+  options = [{name:'mobile'},{name:'laptop'}];
   count: number = 0;
   products = [
     {product: new ProductModule(0,'S10','../../../assets/s10.jpg',1,10000,'mobile') , count: 0, sum: 0},
@@ -56,10 +58,20 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  OnMobile(){
-    this.product = 'mobile';
+  // OnMobile(){
+  //   this.product = 'mobile';
+
+  // }
+  OnCategory(){
+
+    if(this.selectedOption === 'mobile')
+    {
+      this.product = 'mobile';
+    }
+    else if( this.selectedOption === 'laptop')
+    {
+      this.product = 'laptop';
+    }
   }
-  OnLap(){
-    this.product = 'laptop';
-  }
+
 }
