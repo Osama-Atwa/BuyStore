@@ -42,9 +42,23 @@
             <td *ngIf="prod.product.CategoryID === product"> {{ prod.product.id }} </td>
             <td *ngIf="prod.product.CategoryID === product"> {{ prod.product.Name }} </td>
             <td *ngIf="prod.product.CategoryID === product"> <img [src]="prod.product.img" style="margin: 10px;" width="200px" height="200px"> </td>
-            <td *ngIf="prod.product.CategoryID === product"> {{ prod.product.qty }} </td>
+            <td *ngIf="prod.product.CategoryID === product">
+              <div *ngIf="prod.product.qty == 0">
+                <p>
+                  Out of Stock
+                </p>
+              </div>
+              <div *ngIf="prod.product.qty == 1">
+                <p>
+                  Only one in Stock
+                </p>
+              </div>
+              <div *ngIf="prod.product.qty >= 2">
+                {{ prod.product.qty }}
+              </div>
+            </td>
             <td *ngIf="prod.product.CategoryID === product"> {{ prod.product.Price }} </td>
-            <td *ngIf="prod.product.CategoryID === product"> <input type="number" [(ngModel)]="prod.count"> </td>
+            <td *ngIf="prod.product.CategoryID === product"> <input type="number" [(ngModel)]="prod.count" min="0"> </td>
             <td *ngIf="prod.product.CategoryID === product"> <button class="btn btn-secondary" (click)="OnBuy(prod.product.id)"> Buy </button> </td>
           </tr>
         </tbody>
