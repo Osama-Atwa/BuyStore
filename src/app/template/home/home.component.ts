@@ -11,8 +11,11 @@ export class HomeComponent implements OnInit {
   count: number = 0;
   products = [
     {product: new ProductModule(0,'S10','../../../assets/s10.jpg',10,10000,'mobile') , count: 0, sum: 0},
-    {product: new ProductModule(1,'S20','../../../assets/s20.jpg',20,20000,'mobile') , count: 0, sum: 0}
+    {product: new ProductModule(1,'S20','../../../assets/s20.jpg',20,20000,'mobile') , count: 0, sum: 0},
+    {product: new ProductModule(2,'Dell','../../../assets/Dell.jpg',5,10000,'laptop') , count: 0, sum: 0},
+    {product: new ProductModule(3,'Lenovo','../../../assets/lenovo.jpg',6,20000,'laptop') , count: 0, sum: 0}
   ];
+  product:string='mobile';
   total:number=0;
   constructor() { }
 
@@ -46,5 +49,12 @@ export class HomeComponent implements OnInit {
       const element = this.products[index];
       this.total += element.sum;
     }
+  }
+
+  OnMobile(){
+    this.product = 'mobile';
+  }
+  OnLap(){
+    this.product = 'laptop';
   }
 }

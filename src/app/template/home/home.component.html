@@ -1,10 +1,26 @@
 <div class="container">
   <div class="row" >
     <div class="col-xs-12">
-      <button class="btn btn-primary" (click)="ToggleSrc()" type="button" style="margin: 15px;"> Toggle </button>
-      <div class="container">
-        <img [src]="img" alt="my dog" style="margin: 15px;" width="300px" height="200px">
+      <div class="flex-shrink-0 p-3 bg-white" style="width: 140px;">
+        <ul class="list-unstyled ps-0">
+          <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#Category-collapse" aria-expanded="false">
+              Category
+            </button>
+            <div class="collapse" id="Category-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded" (click)="OnMobile()">Mobile</a></li>
+                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded" (click)="OnLap()">Laptop</a></li>
+                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">HeadSet</a></li>
+                <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">PC</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
+        <!-- <div class="container">
+        <img [src]="img" alt="my dog" style="margin: 15px;" width="300px" height="200px">
+      </div> -->
     </div>
   </div>
   <div class="row">
@@ -23,13 +39,13 @@
         </thead>
         <tbody >
           <tr *ngFor="let prod of products">
-            <td> {{ prod.product.id }} </td>
-            <td> {{ prod.product.Name }} </td>
-            <td> <img [src]="prod.product.img" style="margin: 10px;" width="175px" height="200px"> </td>
-            <td> {{ prod.product.qty }} </td>
-            <td> {{ prod.product.Price }} </td>
-            <td> <input type="number" [(ngModel)]="prod.count"> </td>
-            <td> <button class="btn btn-secondary" (click)="OnBuy(prod.product.id)"> Buy </button> </td>
+            <td *ngIf="prod.product.CategoryID === product"> {{ prod.product.id }} </td>
+            <td *ngIf="prod.product.CategoryID === product"> {{ prod.product.Name }} </td>
+            <td *ngIf="prod.product.CategoryID === product"> <img [src]="prod.product.img" style="margin: 10px;" width="200px" height="200px"> </td>
+            <td *ngIf="prod.product.CategoryID === product"> {{ prod.product.qty }} </td>
+            <td *ngIf="prod.product.CategoryID === product"> {{ prod.product.Price }} </td>
+            <td *ngIf="prod.product.CategoryID === product"> <input type="number" [(ngModel)]="prod.count"> </td>
+            <td *ngIf="prod.product.CategoryID === product"> <button class="btn btn-secondary" (click)="OnBuy(prod.product.id)"> Buy </button> </td>
           </tr>
         </tbody>
       </table>
