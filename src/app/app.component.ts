@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'assignment1';
+  routes = [
+    {linkName:'Home', url:'home'},
+    {linkName:'Products', url:'products'},
+    {linkName:'Orders', url:'orders'}
+  ]
 }

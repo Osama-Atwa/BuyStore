@@ -10,8 +10,9 @@ import { TestService } from '../test.service';
 })
 export class ProductListComponent implements OnInit {
 @Input() res:any;
-@Input() CategoryID:number=1;
+@Input() CategoryID:number=0;
 total:number = 0;
+svc: TestService = new TestService(this.http);
 @Output() TotalOrder = new EventEmitter<number>();
   constructor(private http:HttpClient)
   {
@@ -28,21 +29,7 @@ total:number = 0;
 
   OnNewBuy(price:number,prodID:number,qty:number)
   {
-    let id =String(prodID);
-    const input = document.getElementById(id) as HTMLInputElement;
-    let count = 0;
-    count = + input?.value;
-
-    console.log(qty);
-    console.log(count);
-
-    if(count){
-      if( qty > 0 && qty - count >= 0)
-      {
-        this.total += price * count;
-        this.TotalOrder.emit(this.total);
-        this.total = 0;
-      }
-    }
+    this.svc.NewBuy(price,prodID,qty,this.total,this.TotalOrder);
+    this.total=0;
   }
 }
