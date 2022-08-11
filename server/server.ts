@@ -26,6 +26,12 @@ server.get('/products',(req:{},res: { send: (arg0: any) => void; status: (arg0: 
   const products = readProds();
   res.send(products);
 });
+server.post('/product', (req: { body: { prodcutId:any, qty: any; }; }, res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
+  const products = readProds();
+  let product = products.filter((p: { prodcutId: any; }) => p.prodcutId === req.body.prodcutId)[0];
+  product.qty = req.body.qty;
+});
+
 
 server.post('/register', (req: { body: { username: any; }; }, res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
   const users = readUsers();

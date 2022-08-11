@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <select [(ngModel)]="selectedOption" (change)="OnCategory()" style="margin: 10px;">
+        <option *ngFor="let o of options">
+          {{o.name}}
+        </option>
+    </select>
+    </div>
+  </div>
+
+  <app-product-list [CategoryID]="product" (TotalOrder)="AddToTotal($event)"></app-product-list>
+  <div class="row">
+    <div class="col-xs-12">
+        <p>Total Price : {{ total }} </p>
+    </div>
+  </div>
+</div>

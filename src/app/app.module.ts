@@ -10,6 +10,8 @@ import { HomeComponent } from './template/home/home.component';
 import { TestService } from './test.service';
 import { ProductComponent } from './product/product.component';
 import { FormsModule } from '@angular/forms';
+import { ProductListComponent } from './product-list/product-list.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     HomeComponent,
     ProductComponent,
+    ProductListComponent,
+    OrderComponent,
 
   ],
   imports: [
