@@ -1,25 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+
 import {ProductModule} from '../../Models/product/product.module';
+import { HttpClient } from '@angular/common/http';
+import { TestService } from 'src/app/test.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges{
 
   img: string = '../../../assets/img1.jpg';
   selectedOption:string='';
   options = [{name:'mobile'},{name:'laptop'}];
   count: number = 0;
   products = [
-    {product: new ProductModule(0,'S10','../../../assets/s10.jpg',1,10000,'mobile') , count: 0, sum: 0},
-    {product: new ProductModule(1,'S20','../../../assets/s20.jpg',0,20000,'mobile') , count: 0, sum: 0},
-    {product: new ProductModule(2,'Dell','../../../assets/Dell.jpg',5,10000,'laptop') , count: 0, sum: 0},
-    {product: new ProductModule(3,'Lenovo','../../../assets/lenovo.jpg',6,20000,'laptop') , count: 0, sum: 0}
+    {product: new ProductModule(0,'S10','../../../assets/s10.jpg',1,10000,'mobile') , count: 0, sum: 0}
   ];
-  product:string='mobile';
+    // {product: new ProductModule(0,'S10','../../../assets/s10.jpg',1,10000,'mobile') , count: 0, sum: 0},
+    // {product: new ProductModule(1,'S20','../../../assets/s20.jpg',0,20000,'mobile') , count: 0, sum: 0},
+    // {product: new ProductModule(2,'Dell','../../../assets/Dell.jpg',5,10000,'laptop') , count: 0, sum: 0},
+    // {product: new ProductModule(3,'Lenovo','../../../assets/lenovo.jpg',6,20000,'laptop') , count: 0, sum: 0}
+  product:number=1;
   total:number=0;
-  constructor() { }
+  prods:[]= [];
+  res:any;
+  constructor(private http:HttpClient) {
+
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+  }
 
   ngOnInit(): void {
   }
@@ -50,6 +60,25 @@ export class HomeComponent implements OnInit {
     }
 
   }
+
+  OnNewBuy(price:number,prodID:number,qty:number){
+    let id =String(prodID);
+    const input = document.getElementById(id) as HTMLInputElement;
+    let count = 0;
+    count = + input?.value;
+
+    console.log(qty);
+    console.log(count);
+
+    if(count){
+      if( qty > 0 && qty - count >= 0)
+      {
+        this.total += price * count;
+        console.log(this.total);
+      }
+    }
+
+  }
   calTotal(){
     // this.total=0;
     for (let index = 0; index < this.products.length; index++) {
@@ -58,20 +87,23 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // OnMobile(){
-  //   this.product = 'mobile';
-
-  // }
   OnCategory(){
-
     if(this.selectedOption === 'mobile')
     {
-      this.product = 'mobile';
+      this.product = 1;
     }
     else if( this.selectedOption === 'laptop')
     {
-      this.product = 'laptop';
+      this.product = 2;
     }
+
+    let svc = new TestService(this.http);
+    // let prods;
+    let res = svc.getProducts().subscribe((response)=>{
+      this.res = response;
+      console.log(this.res[0]);
+    });
   }
+
 
 }

@@ -39,16 +39,62 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <select [(ngModel)]="selectedOption">
+      <select [(ngModel)]="selectedOption" (change)="OnCategory()" style="margin: 10px;">
         <option *ngFor="let o of options">
            {{o.name}}
         </option>
      </select>
-     <button class="btn btn-secondary" style="margin: 10px;" (click)="OnCategory()">Select</button>
     </div>
   </div>
 
   <div class="row">
+    <div class="col-xs-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Av.Quantity</th>
+              <th>Price</th>
+              <th>Count</th>
+              <th>Buy</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="res">
+            <!-- <div *ngIf="res"> -->
+              <tr *ngFor="let prod of res">
+                <td *ngIf="prod.CategoryID === product"> {{ prod.id }} </td>
+                <td *ngIf="prod.CategoryID === product"> {{ prod.Name }} </td>
+                <td *ngIf="prod.CategoryID === product"> <img [src]="prod.img" style="margin: 10px;" width="75px" height="100px"> </td>
+                <td *ngIf="prod.CategoryID === product">
+                  <div *ngIf="prod.qty == 0">
+                    <p>
+                      Out of Stock
+                    </p>
+                  </div>
+                  <div *ngIf="prod.qty == 1">
+                    <p>
+                      Only one in Stock
+                    </p>
+                  </div>
+                  <div *ngIf="prod.qty >= 2">
+                    {{ prod.qty }}
+                  </div>
+                </td>
+                <!-- <img src="../../../assets/s10.jpg"> -->
+                <td *ngIf="prod.CategoryID === product"> {{ prod.Price }} </td>
+                <td *ngIf="prod.CategoryID === product"> <input type="number" id= "{{prod.id}}" min="0"> </td>
+                <td *ngIf="prod.CategoryID === product"> <button class="btn btn-secondary" (click)="OnNewBuy(prod.Price,prod.id,prod.qty)"> Buy </button> </td>
+              </tr>
+            <!-- </div> -->
+
+          </tbody>
+        </table>
+        <p>Total Price : {{ total }} </p>
+     </div>
+  </div>
+  <!-- <div class="row">
     <div class="col-xs-12">
       <table class="table table-striped">
         <thead>
@@ -90,5 +136,5 @@
       </table>
       <p>Total Price : {{ total }} </p>
     </div>
-  </div>
+  </div> -->
 </div>

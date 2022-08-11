@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './template/header/header.component';
@@ -18,12 +18,14 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     SidebarComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     TestService
