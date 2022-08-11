@@ -41,6 +41,7 @@ total:number = 0;
       {
         this.total += price * count;
         this.TotalOrder.emit(this.total);
+        this.total = 0;
       }
     }
   }
