@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductListComponent } from './product-list/product-list.component';
 import { OrderComponent } from './order/order.component';
 import { ProductServiceService } from './product-list/product-service.service';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProductServiceService } from './product-list/product-service.service';
     ProductComponent,
     ProductListComponent,
     OrderComponent,
+    ProductDetailsComponent,
 
   ],
   imports: [

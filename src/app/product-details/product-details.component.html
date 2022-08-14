@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4" style="text-align: center;">
+      <br>
+      <br>
+      <br>
+      <button class="btn btn-secondary" style="margin:20px;" [routerLink]="'/products/'+ prID">Previos</button>
+    </div>
+    <div class="col-sm-4">
+      <div *ngIf="prod">
+        <div class="card">
+          <img [src]="prod.img" alt="prod.Name" style="width:100%;">
+          <h1>{{prod.Name}}</h1>
+          <p class="price">{{prod.Price}}$</p>
+          <p>Some text about the product..</p>
+          <p><button>Add to Cart</button></p>
+          <button class="btn" [routerLink]="'/products'">Back To Produts</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" style="text-align: center;">
+      <br>
+      <br>
+      <br>
+      <button class="btn btn-secondary" style="margin:20px;" [routerLink]="'/products/'+ nxID">Next</button>
+    </div>
+  </div>
+</div>

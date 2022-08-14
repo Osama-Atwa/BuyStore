@@ -45,7 +45,7 @@
     {
       "id": 1,
       "Name": "s10",
-      "img": "../../../assets/s10.jpg",
+      "img": "../../assets/s10.jpg",
       "qty": 10,
       "Price": 10000,
       "CategoryID": 1,

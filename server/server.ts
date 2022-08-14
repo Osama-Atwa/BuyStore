@@ -27,10 +27,14 @@ server.get('/products',(req:{},res: { send: (arg0: any) => void; status: (arg0: 
   res.send(products);
 });
 
-server.post('/product', (req: { body: { prodcutId:any, qty: any; }; }, res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
+server.get('/product', (req: { query: { id:any}; }, res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
   const products = readProds();
-  let product = products.filter((p: { prodcutId: any; }) => p.prodcutId === req.body.prodcutId)[0];
-  product.qty = req.body.qty;
+  // const product = products.filter(
+  //   (p: { id: any; }) => p.id === req.query.id
+  //   );
+  let x:number = +req.query!.id-1;
+  // console.log(req.query);
+  res.send(products[x]);
 });
 
 server.get('/categories',(req:{},res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }, next: () => void)=>{
