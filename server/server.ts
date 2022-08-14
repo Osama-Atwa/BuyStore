@@ -26,12 +26,17 @@ server.get('/products',(req:{},res: { send: (arg0: any) => void; status: (arg0: 
   const products = readProds();
   res.send(products);
 });
+
 server.post('/product', (req: { body: { prodcutId:any, qty: any; }; }, res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
   const products = readProds();
   let product = products.filter((p: { prodcutId: any; }) => p.prodcutId === req.body.prodcutId)[0];
   product.qty = req.body.qty;
 });
 
+server.get('/categories',(req:{},res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }, next: () => void)=>{
+  const categories = readCats();
+  res.send(categories);
+});
 
 server.post('/register', (req: { body: { username: any; }; }, res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
   const users = readUsers();
@@ -89,4 +94,9 @@ function readProds() {
   const dbRaw = fs.readFileSync('./server/db.json');
   const prods = JSON.parse(dbRaw).products
   return prods;
+}
+function readCats() {
+  const dbRaw = fs.readFileSync('./server/db.json');
+  const cats = JSON.parse(dbRaw).categories;
+  return cats;
 }

@@ -8,18 +8,23 @@ import { TestService } from '../test.service';
 })
 export class OrderComponent implements OnInit {
 
-  selectedOption:string='';
-  options = [{name:'mobile'},{name:'laptop'}];
+  selectedOption:number = 0;
+  options:any ;
   total:number=0;
   product:number =0;
   svc:TestService = new TestService(this.http);
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    this.http.get('http://localhost:3000/categories').subscribe((response)=>{
+    this.options = response;
+  });
+  }
 
   ngOnInit(): void {
   }
 
   OnCategory(){
-    this.product = this.svc.CategorySelection(this.selectedOption,this.product);
+    this.product = +this.product;
+    console.log(this.product);
   }
   AddToTotal(orderTotal : number){
     this.total += orderTotal;

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TestService } from '../test.service';
+import { ProductServiceService } from './product-service.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,10 +10,10 @@ import { TestService } from '../test.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-@Input() res:any;
+res:any;
 @Input() CategoryID:number=0;
 total:number = 0;
-svc: TestService = new TestService(this.http);
+svc: ProductServiceService = new ProductServiceService(this.http);
 @Output() TotalOrder = new EventEmitter<number>();
   constructor(private http:HttpClient)
   {
@@ -20,7 +21,7 @@ svc: TestService = new TestService(this.http);
   }
 
   ngOnInit(): void {
-    let svc = new TestService(this.http);
+    let svc = new ProductServiceService(this.http);
     // let prods;
     svc.getProducts().subscribe((response)=>{
       this.res = response;

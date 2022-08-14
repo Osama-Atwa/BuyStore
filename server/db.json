@@ -142,5 +142,19 @@
       "count":0,
       "sum":0
     }
+  ],
+  "categories": [
+    {
+      "id":0,
+      "name":"all"
+    },
+    {
+      "id":1,
+      "name":"mobile"
+    },
+    {
+      "id":2,
+      "name":"laptop"
+    }
   ]
 }

@@ -12,6 +12,7 @@ import { ProductComponent } from './product/product.component';
 import { FormsModule } from '@angular/forms';
 import { ProductListComponent } from './product-list/product-list.component';
 import { OrderComponent } from './order/order.component';
+import { ProductServiceService } from './product-list/product-service.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { OrderComponent } from './order/order.component';
     HttpClientModule
   ],
   providers: [
-    TestService
+    TestService,
+    ProductServiceService
   ],
   bootstrap: [AppComponent]
 })

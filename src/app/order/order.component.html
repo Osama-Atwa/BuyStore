@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <select [(ngModel)]="selectedOption" (change)="OnCategory()" style="margin: 10px;">
-        <option *ngFor="let o of options">
+      <select [(ngModel)]="product" (change)="OnCategory()" style="margin: 10px;">
+        <option *ngFor="let o of options" value="{{o.id}}" >
           {{o.name}}
         </option>
     </select>
