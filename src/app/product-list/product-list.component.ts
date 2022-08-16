@@ -13,24 +13,24 @@ export class ProductListComponent implements OnInit {
 res:any;
 @Input() CategoryID:number=0;
 total:number = 0;
-svc: ProductServiceService = new ProductServiceService(this.http);
+// productServiceService: ProductServiceService = new ProductServiceService(this.http);
 @Output() TotalOrder = new EventEmitter<number>();
-  constructor(private http:HttpClient)
+  constructor(private http:HttpClient,private productServiceService:ProductServiceService)
   {
 
   }
 
   ngOnInit(): void {
-    let svc = new ProductServiceService(this.http);
     // let prods;
-    svc.getProducts().subscribe((response)=>{
+    this.productServiceService.getProducts().subscribe((response)=>{
       this.res = response;
     });
   }
 
   OnNewBuy(price:number,prodID:number,qty:number)
   {
-    this.svc.NewBuy(price,prodID,qty,this.total,this.TotalOrder);
+    this.productServiceService.NewBuy(price,prodID,qty,this.total,this.TotalOrder);
     this.total=0;
   }
+
 }

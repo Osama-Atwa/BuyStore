@@ -4,7 +4,8 @@ const router = jsonServer.router('server/db.json');
 const middlewares = jsonServer.defaults();
 const db = require('./db.json');
 const fs = require('fs');
-
+const path = require('path');
+let LastID = 11;
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
@@ -23,6 +24,23 @@ server.post('/login', (req: { body: { username: any; password: any; }; }, res: {
 });
 
 server.get('/products',(req:{},res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }, next: () => void)=>{
+  const products = readProds();
+  res.send(products);
+});
+//public Name: string, public img: string, public qty: number, public Price: number, public CategoryID: string
+
+server.post('/products',(req:{ body: { Name: string, img: string, qty: number, Price: number, CategoryID: string }; },res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }, next: () => void)=>{
+
+  let prod = { "id":LastID, "Name": req.body.Name, "img": req.body.img, "qty":req.body.qty, "Price":req.body.Price, "CategoryID": req.body.CategoryID,"count": 0,"sum": 0 };
+  LastID += 1;
+  db.products.push(prod);
+  db.save;
+//   fs.writeFile ("db.json", JSON.stringify(db), function(err: any) {
+//     if (err) throw err;
+//     console.log('complete');
+//     }
+// );
+  fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db));
   const products = readProds();
   res.send(products);
 });
@@ -48,10 +66,11 @@ server.post('/register', (req: { body: { username: any; }; }, res: { send: (arg0
 
   if (user === undefined || user === null) {
     res.send({
-      ...formatUser(req.body.username),
+      // ...formatUser(req.body.username),
       token: checkIfAdmin(req.body)
     });
     db.users.push(req.body);
+    console.log(db);
   } else {
     res.status(500).send('User already exists');
   }

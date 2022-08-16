@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit, OnChanges{
   options = [{name:'mobile'},{name:'laptop'}];
   count: number = 0;
   products = [
-    {product: new ProductModule(0,'S10','../../../assets/s10.jpg',1,10000,'mobile') , count: 0, sum: 0}
+    {product: new ProductModule(0,'S10','../../../assets/s10.jpg',1,10000,1) , count: 0, sum: 0}
   ];
   product:number=1;
   total:number=0;

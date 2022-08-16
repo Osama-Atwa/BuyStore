@@ -14,6 +14,9 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { OrderComponent } from './order/order.component';
 import { ProductServiceService } from './product-list/product-service.service';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductdetailsService } from './product-details/productdetails.service';
+import { LoginComponent } from './login/login.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ProductListComponent,
     OrderComponent,
     ProductDetailsComponent,
+    LoginComponent,
+    AddProductComponent,
 
   ],
   imports: [
@@ -36,7 +41,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   ],
   providers: [
     TestService,
-    ProductServiceService
+    ProductServiceService,
+    ProductdetailsService
   ],
   bootstrap: [AppComponent]
 })

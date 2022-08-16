@@ -1,5 +1,5 @@
 <div class="row">
-  <app-header [routes]="routes"></app-header>
+  <app-header [routes]="routes" [show_logout]="show_logout" (LogEmmitter)="Logout($event)"></app-header>
 </div>
 <div class="row">
   <div class="col-sm-2">
@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="col-sm-8">
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="Login($event)"></router-outlet>
   </div>
 </div>
 <app-footer></app-footer>

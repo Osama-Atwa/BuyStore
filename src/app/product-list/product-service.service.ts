@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProductModule } from '../Models/product/product.module';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,7 @@ export class ProductServiceService {
       }
     }
   }
-  getProducts(){
-    return this.http.get('http://localhost:3000/products');
+  getProducts():Observable<ProductModule[]>{
+    return this.http.get<ProductModule[]>('http://localhost:3000/products');
   }
 }
