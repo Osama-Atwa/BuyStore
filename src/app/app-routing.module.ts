@@ -5,7 +5,7 @@ import { OrderComponent } from './order/order.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { HomeComponent } from './template/home/home.component';
-import { AuthService } from './login/Auth.service';
+import { AuthService } from './Services/Auth.service';
 import { GuardGuard } from './_guard/-guard.guard';
 import { AddProductComponent } from './add-product/add-product.component';
 const routes: Route[] = [
@@ -17,7 +17,9 @@ const routes: Route[] = [
   {path:'products',component:ProductListComponent},
   {path:'login',component:LoginComponent},
   {path:'logout',redirectTo:'/home'},
-  {path:'AddProduct',component:AddProductComponent}
+  {path:'AddProduct',component:AddProductComponent},
+  {path:'AddProduct/:id',component:AddProductComponent,pathMatch:'full'}
+
 ];
 
 @NgModule({

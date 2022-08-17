@@ -45,6 +45,24 @@ server.post('/products',(req:{ body: { Name: string, img: string, qty: number, P
   res.send(products);
 });
 
+server.post('/products/edit',(req:{ body: { id:number,Name: string, img: string, qty: number, Price: number, CategoryID: string }; },res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }, next: () => void)=>{
+
+  let prod = { "id":req.body.id, "Name": req.body.Name, "img": req.body.img, "qty":req.body.qty, "Price":req.body.Price, "CategoryID": req.body.CategoryID,"count": 0,"sum": 0 };
+
+
+  const index = db.products.findIndex((x: { id: number; }) => x.id==req.body.id);
+  console.log(index);
+  if (index > -1) {
+    db.products.splice(index, 1);
+  }
+
+  db.products.push(prod);
+  db.save;
+  fs.writeFileSync(path.resolve(__dirname, 'db.json'), JSON.stringify(db));
+  const products = readProds();
+  res.send(products);
+});
+
 server.get('/product', (req: { query: { id:any}; }, res: { send: (arg0: any) => void; status: (arg0: number) => { (): any; new(): any; send: { (arg0: string): void; new(): any; }; }; }) => {
   const products = readProds();
   // const product = products.filter(

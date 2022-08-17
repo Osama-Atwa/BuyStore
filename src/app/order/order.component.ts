@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TestService } from '../test.service';
+import { TestService } from '../Services/test.service';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',

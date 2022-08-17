@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import {ProductModule} from '../../Models/product/product.module';
 import { HttpClient } from '@angular/common/http';
-import { TestService } from 'src/app/test.service';
+import { TestService } from 'src/app/Services/test.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

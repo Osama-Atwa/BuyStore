@@ -44,6 +44,7 @@
           <td> {{ prod.Price }} </td>
           <td> <input type="number" id= "{{prod.id}}" min="0"> </td>
           <td> <button class="btn btn-secondary" [routerLink]="prod.id"> Show Details </button></td>
+          <td> <button class="btn btn-secondary" (click)="SendID(prod.id)" [routerLink]="'/AddProduct/'+prod.id" > Edit </button></td>
           <td> <button class="btn btn-primary" (click)="OnNewBuy(prod.Price,prod.id,prod.qty)"> Add to Cart </button> </td>
         </tr>
       </tbody>
@@ -87,6 +88,7 @@
             <td *ngIf="prod.CategoryID === CategoryID"> {{ prod.Price }} </td>
             <td *ngIf="prod.CategoryID === CategoryID"> <input type="number" id= "{{prod.id}}" min="0"> </td>
             <td *ngIf="prod.CategoryID === CategoryID"> <button class="btn btn-secondary" [routerLink]="prod.id"> Show Details </button></td>
+            <td *ngIf="prod.CategoryID === CategoryID"> <button class="btn btn-secondary" (click)="SendID(prod.id)" [routerLink]="'/AddProduct/'+prod.id" > Edit </button></td>
             <td *ngIf="prod.CategoryID === CategoryID"> <button class="btn btn-primary" (click)="OnNewBuy(prod.Price,prod.id,prod.qty)"> Add to Cart </button> </td>
           </tr>
       </tbody>

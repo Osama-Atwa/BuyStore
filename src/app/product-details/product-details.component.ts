@@ -3,7 +3,7 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductModule } from '../Models/product/product.module';
 import { ProductComponent } from '../product/product.component';
-import { ProductdetailsService } from './productdetails.service';
+import { ProductdetailsService } from '../Services/productdetails.service';
 
 @Component({
   selector: 'app-product-details',

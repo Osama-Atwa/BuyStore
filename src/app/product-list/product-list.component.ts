@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TestService } from '../test.service';
-import { ProductServiceService } from './product-service.service';
+import { TestService } from '../Services/test.service';
+import { ProductServiceService } from '../Services/product-service.service';
+import { DataService } from '../Services/data.service';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +16,7 @@ res:any;
 total:number = 0;
 // productServiceService: ProductServiceService = new ProductServiceService(this.http);
 @Output() TotalOrder = new EventEmitter<number>();
-  constructor(private http:HttpClient,private productServiceService:ProductServiceService)
+  constructor(private http:HttpClient,private productServiceService:ProductServiceService, private ds: DataService)
   {
 
   }
@@ -31,6 +32,10 @@ total:number = 0;
   {
     this.productServiceService.NewBuy(price,prodID,qty,this.total,this.TotalOrder);
     this.total=0;
+  }
+  SendID(ID:number){
+    console.log(ID);
+    this.ds.sendData(ID);
   }
 
 }

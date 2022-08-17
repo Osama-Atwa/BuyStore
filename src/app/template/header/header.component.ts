@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import {AuthService} from 'src/app/login/Auth.service'
+import {AuthService} from 'src/app/Services/Auth.service'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
